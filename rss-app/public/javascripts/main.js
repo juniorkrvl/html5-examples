@@ -3,10 +3,6 @@ $(document).ready(function () {
   dPadNav.init();
   boxeeAPI.keyboardMode();
   
-  window.notify = function(message, seconds) {
-    boxee.notify(message, seconds);
-  }
-  
   var rssFeedTemplate = Handlebars.compile($('#rss-feed-template').html());
   var rssItemTemplate = Handlebars.compile($('#rss-item-template').html());
   var rssListTemplate = Handlebars.compile($('#rss-item-list-template').html());
@@ -126,7 +122,6 @@ $(document).ready(function () {
         });
 
         $showcaseList.delegate('li', 'click', function(e) {
-          boxee.notify('showcase click');
           var $li = $(this);
           var feed = {
             url: $li.attr('data-feed-url'),
