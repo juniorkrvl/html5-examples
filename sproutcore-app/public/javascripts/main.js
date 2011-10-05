@@ -378,6 +378,8 @@ $(function() {
     });
   }, 1000);
 
+  boxeeAPI.keyboardMode();
+
   var h = $(window).height();
   var w = $(window).width();
   if (h == 480 && w == 720) {
