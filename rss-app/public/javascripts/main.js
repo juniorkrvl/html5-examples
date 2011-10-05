@@ -113,6 +113,7 @@ $(document).ready(function () {
         _.each(data.feeds, function(feed) {
           $showcaseList.append(rssFeedTemplate(feed));
         });
+        $('#feed-showcase').show();
       });
       
       $.when(promise).then(function() {
@@ -151,7 +152,6 @@ $(document).ready(function () {
     } else {
       dPadNav.enterNavArea($showcaseList);
     }
-    $('#feed-showcase').show();
   };
   
   var clickFeed = function(e) {
@@ -210,6 +210,7 @@ $(document).ready(function () {
       if (player.src) {
         dPadNav.enterNavArea($("#video-container"));
         $('body').addClass('full-screen-video');
+        $('#feed-showcase').hide();
       }
     }
   });
