@@ -2,8 +2,6 @@
   <head>
     <title>Boxee RSS App</title>
     
-    <!-- No boxee control script... boxee-utils.js does all the work -->
-    
     <link rel="Stylesheet" type="text/css" href="/stylesheets/main.css" />
     <link rel="Stylesheet" type="text/css" href="/stylesheets/fullscreen-player.css" />
     <link rel="Stylesheet" type="text/css" href="/stylesheets/fullscreen-player-urls.css" />
@@ -68,10 +66,43 @@
     <script type='text/javascript' src='http://documentcloud.github.com/underscore/underscore-min.js'></script>
     <script type='text/javascript' src='/javascripts/vendor/handlebars.1.0.0.beta.3.js'></script>
     
-    <script type='text/javascript' src='/javascripts/boxee-utils.js'></script>
+    <script type='text/javascript' src='/javascripts/boxee-api.js'></script>
     <script type='text/javascript' src='/javascripts/fullscreen-player.js'></script>
     <script type='text/javascript' src='/javascripts/dpad-nav.js'></script>
 
-    <script type='text/javascript' src='/javascripts/main.js'></script>    
+    <script type='text/javascript' src='/javascripts/main.js'></script>
+
+    <script type='text/javascript'>
+      $(function() {
+        window.hi = function(text) {
+          $("#left-menu-title").text(text);
+        };
+        
+        $(document).keydown(function(e) {
+          if (e.keyCode === 67) { // c
+            boxeeAPI.cursorMode();
+            boxeeAPI.showNotification('c5');
+            
+            window.awesomeCallback = function(confirmed) {
+              $("#left-menu-title").text('awesome: ' + confirmed);
+            };
+            
+            boxeeAPI.promptDialog('A "Page" Title', 'More "GREAT" Text', 'awesomeCallback');
+            
+            
+          } else if (e.keyCode === 75) { // k
+            boxeeAPI.keyboardMode();
+            boxeeAPI.showNotification('k5');
+            window.pagePromptDialogCallback = function(confirmed) {
+              $("#left-menu-title").text('confirmed: ' + confirmed);
+            };
+            boxeeAPI.promptDialog('Page Title', 'Page More Text', function(confirmed) {
+              $("#left-menu-title").text('booyah: ' + confirmed);
+            });
+          }
+        });         
+      });
+    </script>
+    
   </body>
 </html>

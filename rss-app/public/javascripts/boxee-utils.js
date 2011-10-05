@@ -1,3 +1,27 @@
+
+
+var defineBoxeeControlFunctions = function () {
+  function setApiMinVersion(version) {
+    boxee.apiMinVersion = version || 7.0;
+  }
+  boxee.exec(setApiMinVersion);
+  
+  function showNotification(message, duration) {
+    boxee.showNotification(message, ".", duration || 2);
+  }
+  boxee.exec(showMessage);
+  
+  function cursorMode() {
+    boxee.setMode(boxee.CURSOR_MODE);
+  }
+  boxee.exec(cursorMode);
+  
+  function keyboardMode() {
+    boxee.setMode(boxee.KEYBOARD_MODE);
+  }
+  boxee.exec(keyboardMode);        
+}
+
 /*
   Note about exec2:  On the boxee box, exec2 is a blocking function that returns a string.  For example,
   boxee.exec2("load url xyz and give me the xml from it") will block until the url is loaded and return
@@ -10,15 +34,14 @@
   to fetch data and pass it back to the page.
 */
 
-
-
 /* _.defaults will leave existing properties in window.boxee untouched, but fill in non-existant ones from the second argument */
-
 
 window.boxee = window.boxee || {};
 
 if (!window.boxee.exec) {
   window.boxee.fake = true;
+} else {
+  defineBoxeeControlFunctions();
 }
 
 _.defaults(window.boxee, {
@@ -71,9 +94,16 @@ _.defaults(window.boxee, {
   },
   updateTimeBuffer: function(time, duration) {
     boxee.exec("updateTimeBuffer(" + time + ", " + duration + ")");
+  },
+  keyboardMode: function() {
+    boxee.exec("boxee.keyboardMode()");
   }
 });
 
 $(window).unload(function() {
   boxee.clearPauseOverlay()
+});
+
+$(function() {
+  boxee.keyboardMode();
 });
