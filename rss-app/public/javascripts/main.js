@@ -1,6 +1,7 @@
 $(document).ready(function () {
   
   dPadNav.init();
+  boxeeAPI.keyboardMode();
   
   window.notify = function(message, seconds) {
     boxee.notify(message, seconds);
@@ -93,10 +94,8 @@ $(document).ready(function () {
       // show controls when starting/switching video
       $('.boxee-player-osd').css('visibility', 'visible');
       
-      var player = document.getElementById('player');
-      player.src = $li.attr('data-video-src');
-      player.load();
-      player.play();
+      FullScreenPlayer.loadSrc($li.attr('data-video-src'));      
+      
       $('.boxee-player-title-text').text($li.attr('data-video-title'));
     });
     
@@ -239,6 +238,11 @@ $(document).ready(function () {
     }
     $('.boxee-player-osd').css('visibility', 'visible');
     FullScreenPlayer.seekReverse();
+  });
+  
+  $("#player").bind('click', function() {
+    $('.boxee-player-osd').css('visibility', 'visible');
+    FullScreenPlayer.togglePause();
   });
   
   $("#player").bind('nav-right', function() {

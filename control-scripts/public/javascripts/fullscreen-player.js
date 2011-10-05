@@ -160,6 +160,8 @@ window.FullScreenPlayer = {
     this.video.src = src;
     this.video.load();
     this.video.play();
+    this.setVideoTime(0);
+    this.setVideoDuration(0);
   },
   
   /* Time Proxy */
