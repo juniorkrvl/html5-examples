@@ -97,6 +97,8 @@ $(document).ready(function () {
     
     $list.delegate('li', 'nav-selected', function(e) {
       var $li = $(this);
+      $('ul.video-feed').hide();
+      $list.show();
       scrollToShow($list, $li);
     });
     
@@ -181,7 +183,7 @@ $(document).ready(function () {
     var feedId = $li.attr('data-feed-id');
     $('ul.video-feed').hide();
     $("ul#feed-" + feedId).show();
-  });
+  });  
   
   var player = document.getElementById('player');
 
