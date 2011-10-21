@@ -71,6 +71,12 @@ window.boxeeAPI = {
     var json = JSON.stringify([message, ".", seconds]);
     boxee.exec('showNotification(' + json + ')');
   },
+  closeBrowser: {
+    boxee.exec("browser.shutdown()");
+  },
+  closeApp: {
+    this.closeBrowser();
+  },
   showBoxeeOSD: function() {
     boxee.exec("boxee.showBoxeeOSD()");
   },
