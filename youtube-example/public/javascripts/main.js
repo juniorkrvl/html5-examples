@@ -11,6 +11,7 @@ $(function() {
     
     playerState.canSetFullScreen = true;
     playerState.canSeek = true;
+    playerState.canSeekTo = true;
     
     boxee.onUpdateState = function() {
       var duration = parseInt(browser.execute('document.embeds[0].getDuration()'), 10);
