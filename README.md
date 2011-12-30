@@ -1,14 +1,4 @@
-**Resources**
-
-[API Helper Library](https://github.com/Boxee/boxee-js-api)
-
-[Javascript API Docs](http://developer.boxee.tv/JavaScript_API)
-
-[Blog post on html5 at HackNY](http://developer.boxee.tv/blog/2011/10/boxee-at-hackny-hackathon/)
-
-[HackNY Presentation](https://docs.google.com/present/edit?id=0AcuQDZKq6ks8ZGc4Nzk4dmJfODNmOGs0ZDUydw&hl=en_US)
-
-**Example HTML5 apps for the Boxee Box browser**
+Example HTML5 apps for the Boxee Box browser
 
 Use these examples to jump-start your leanback app!
 
@@ -46,6 +36,18 @@ sproutcore-app
 Note: SproutCore 2.0 has been renamed [emberjs](https://github.com/emberjs/ember.js/)
 
 Similar to the rss-app, using the same node.js backend, but the client uses the SproutCore 2.0 javascript framework, which results in a different approach to handling keyboard input and managing application state.  SproutCore has a bit of a learning curve, but it is very powerful.
+
+
+Additional Resources
+---
+
+[API Helper Library](https://github.com/Boxee/boxee-js-api)
+
+[Javascript API Docs](http://developer.boxee.tv/JavaScript_API)
+
+[Blog post on html5 at HackNY](http://developer.boxee.tv/blog/2011/10/boxee-at-hackny-hackathon/)
+
+[HackNY Presentation](https://docs.google.com/present/edit?id=0AcuQDZKq6ks8ZGc4Nzk4dmJfODNmOGs0ZDUydw&hl=en_US)
 
 
 Questions?
