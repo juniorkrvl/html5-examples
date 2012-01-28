@@ -1,0 +1,6 @@
+[submodule "submodules/html5-fullscreen-player"]
+	path = submodules/html5-fullscreen-player
+	url = git@github.com:Boxee/html5-fullscreen-player.git
+[submodule "submodules/boxee-js-api"]
+	path = submodules/boxee-js-api
+	url = git@github.com:Boxee/boxee-js-api.git
