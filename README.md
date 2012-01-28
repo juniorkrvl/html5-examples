@@ -30,12 +30,12 @@ A leanback video rss feed viewer.
 A simple node.js backend turns rss feeds into json.  The client javascript uses jQuery, Underscore, and the Boxee html5-fullscreen-player to display a simple menu navigable using the d-pad, which shows fullscreen video once a video is selected.
 
 
-sproutcore-app
+emberjs-app
 ===
 
-Note: SproutCore 2.0 has been renamed [emberjs](https://github.com/emberjs/ember.js/)
+[emberjs](https://github.com/emberjs/ember.js/)
 
-Similar to the rss-app, using the same node.js backend, but the client uses the SproutCore 2.0 javascript framework, which results in a different approach to handling keyboard input and managing application state.  SproutCore has a bit of a learning curve, but it is very powerful.
+Similar to the rss-app, using the same node.js backend, but the client uses the Ember.js javascript framework, which results in a different approach to handling keyboard input and managing application state.  Ember.js has a bit of a learning curve, but it is very powerful.
 
 
 Additional Resources

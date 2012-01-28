@@ -1,4 +1,4 @@
-Sproutcore-based leanback app for watching videos from RSS feeds
+Emberjs-based leanback app for watching videos from RSS feeds
 ===
 
 The server takes RSS feeds and translates them into json.  The client displays feeds of videos and lets the user navigate and select them with the d-pad.  Video fills the browser when playing.
@@ -14,7 +14,7 @@ Server
    
 Client
 
-   * SproutCore 2.0
+   * Ember.js
    * jQuery
    * Underscore.js
    * Boxee's html5-fullscreen-player
