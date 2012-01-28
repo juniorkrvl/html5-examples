@@ -10,7 +10,7 @@ var scrollToShow = function($list, $item) {
   $list.scrollTop(scrollAmount);
 };
 
-var App = SC.Application.create({
+var App = Ember.Application.create({
   setSelected: function(view) {
     App.set('selectedView', view);
   },
@@ -51,7 +51,7 @@ var App = SC.Application.create({
   }
 });
 
-App.VideoItemView = SC.View.extend({
+App.VideoItemView = Ember.View.extend({
   
   templateName: 'video-item-template',
   tagName: 'li',  
@@ -107,7 +107,7 @@ App.VideoItemView = SC.View.extend({
   }
 });
 
-App.VideoController = SC.Object.create({
+App.VideoController = Ember.Object.create({
   up: function() {
     App.exitFullScreenVideo();
   },
@@ -144,7 +144,7 @@ App.VideoController = SC.Object.create({
   }
 });
 
-App.FeedView = SC.View.extend({
+App.FeedView = Ember.View.extend({
   templateName: "feed-template",
   classNameBindings: ['content.active', 'content.selected', 'content.history'],
   init: function() {
@@ -192,14 +192,14 @@ App.FeedView = SC.View.extend({
   }
 });
 
-App.VideoFeedView = SC.CollectionView.extend({
+App.VideoFeedView = Ember.CollectionView.extend({
   itemViewClass: App.VideoItemView,
   tagName: 'ul',
   classNames: ['video-feed'],
   classNameBindings: ['content.active']
 });
 
-App.Feed = SC.ArrayProxy.extend({
+App.Feed = Ember.ArrayProxy.extend({
   title: null,
   thumbnail: null,
   url: null,
@@ -286,7 +286,7 @@ App.Feed = SC.ArrayProxy.extend({
   }
 });
 
-App.VideoItem = SC.Object.extend({
+App.VideoItem = Ember.Object.extend({
   title: null,
   thumbnail: null,
   url: null,
@@ -314,7 +314,7 @@ App.VideoItem = SC.Object.extend({
   }
 });
 
-App.feedsController = SC.ArrayProxy.create({
+App.feedsController = Ember.ArrayProxy.create({
   content: [],
   
   addFeed: function(feed) {
