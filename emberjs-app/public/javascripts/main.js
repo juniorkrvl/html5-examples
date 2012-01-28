@@ -66,33 +66,31 @@ App.VideoItemView = Ember.View.extend(DPadHandlers, {
   templateName: 'video-item-template',
   tagName: 'li',  
   classNames: ['video-item'],
-  classNameBindings: ['content.playing', 'content.selected'],
-  videoBinding: "content",
+  classNameBindings: ['video.playing', 'video.selected'],
+  videoBinding: "content", // `this.video` === `this.content`
   feedBinding: "content.feed",
   
   onSelection: function() {
-    if (this.content.get('selected')) {
+    if (this.video.get('selected')) {
       App.setSelected(this);
       this.scrollIntoView();
     }
-  }.observes('content.selected'),
+  }.observes('video.selected'),
   
   scrollIntoView: function() {
     scrollToShow(this.$().closest('ul'), this.$());
   },
   
   enterKey: function() {
-    console.log('Enter key hit for ' + this.content.title);
-        
-    this.content.play();
+    this.video.play();
   },
   
   upKey: function() {
-    this.feed.navUpFrom(this.content);    
+    this.feed.navUpFrom(this.video);    
   },
   
   downKey: function() {
-    this.feed.navDownFrom(this.content);
+    this.feed.navDownFrom(this.video);
   },
   
   rightKey: function() {
@@ -103,12 +101,12 @@ App.VideoItemView = Ember.View.extend(DPadHandlers, {
   
   leftKey: function() {
     this.feed.deselectAll();
-    this.feed.set('lastSelected', this.content);
+    this.feed.set('lastSelected', this.video);
     this.feed.activate();
   },
   
   mouseDown: function() {
-    this.content.select();
+    this.video.select();
   }
 });
 
