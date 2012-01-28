@@ -43,8 +43,6 @@
   <script type="text/x-handlebars" data-template-name='video-feed-template-dead'>
     {{collection contentBinding="content.videoItems" class="video-feed" tagName="ul" classBindings="content.isActive" itemViewClass="App.VideoItemView"}}
   </script>
-
-  
 </head>
 <body>
   <script type="text/x-handlebars">
@@ -62,33 +60,7 @@
     
     <div id='video-container' class='nav-area' data-spot-selector='video'>
       <video id='player'></video>
-      <div class='boxee-player-osd'>
-        <div class='boxee-player-title'>
-          <div class='boxee-player-title-text'></div>
-        </div>
-        <div class='boxee-seeking'>Loading</div>
-        <div class='boxee-progressbar-container'>
-          <div class='boxee-progressbar-elapsed-container'>
-            <div class='boxee-progressbar-elapsed-text'></div>
-          </div>
-          <div class='boxee-progressbar-duration-container'>
-            <div class='boxee-progressbar-duration-text'></div>
-          </div>
-          <div class='boxee-progressbar'>
-            <div class='boxee-progressbar-wrapper'>
-              <div class='boxee-progressbar-buffered'></div>
-              <div class='boxee-progressbar-position'></div>
-            
-              <div class='boxee-scrubber-container'>
-                <div class='boxee-scrubber'></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    
-    
   </script>
 
   <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
