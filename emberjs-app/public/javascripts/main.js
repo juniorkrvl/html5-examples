@@ -27,31 +27,41 @@ var App = Ember.Application.create({
   },
   
   keyDown: function(e) {
-    if (App.selectedView) {
-      var code = (e.keyCode ? e.keyCode : e.which);
-
-      switch(code) {
-        case 13: // enter
-          App.selectedView.enterKey(); 
-          break;
-        case 37:
-          App.selectedView.left();
-          break;
-        case 38:
-          App.selectedView.up();
-          break;
-        case 39:
-          App.selectedView.right();
-          break;
-        case 40:
-          App.selectedView.down();
-          break;
-      }
+    if (App.selectedView && App.selectedView.keyDown) {
+      return App.selectedView.keyDown(e);
     } 
   }
 });
 
-App.VideoItemView = Ember.View.extend({
+DPadHandlers = Ember.Mixin.create({
+	upKey:    Ember.K,
+	downKey:  Ember.K,
+	leftKey:  Ember.K,
+	rightKey: Ember.K,
+	enterKey: Ember.K,
+	
+	keyDown: function(e) {
+	  // TODO how should super be handled?
+	  // this._super(e);
+    
+    var code = (e.keyCode ? e.keyCode : e.which);
+
+    switch(code) {
+      case 13:
+        return this.enterKey && this.enterKey(); 
+      case 37:
+        return this.leftKey && this.leftKey();
+      case 38:
+        return this.upKey && this.upKey();
+      case 39:
+        return this.rightKey && this.rightKey();
+      case 40:
+        return this.downKey && this.downKey();
+    }
+  }
+});
+
+App.VideoItemView = Ember.View.extend(DPadHandlers, {
   
   templateName: 'video-item-template',
   tagName: 'li',  
@@ -60,17 +70,12 @@ App.VideoItemView = Ember.View.extend({
   videoBinding: "content",
   feedBinding: "content.feed",
   
-  init: function() {
-    this.content.addObserver('selected', this, "onSelection")
-    this._super();
-  },
-  
   onSelection: function() {
-    if (this.content.selected) {
+    if (this.content.get('selected')) {
       App.setSelected(this);
       this.scrollIntoView();
     }
-  },
+  }.observes('content.selected'),
   
   scrollIntoView: function() {
     scrollToShow(this.$().closest('ul'), this.$());
@@ -82,21 +87,21 @@ App.VideoItemView = Ember.View.extend({
     this.content.play();
   },
   
-  up: function() {
+  upKey: function() {
     this.feed.navUpFrom(this.content);    
   },
   
-  down: function() {
+  downKey: function() {
     this.feed.navDownFrom(this.content);
   },
   
-  right: function() {
+  rightKey: function() {
     if (FullScreenPlayer.video.src) {
       App.fullScreenVideo();
     }
   },
   
-  left: function() {
+  leftKey: function() {
     this.feed.deselectAll();
     this.feed.set('lastSelected', this.content);
     this.feed.activate();
@@ -107,12 +112,12 @@ App.VideoItemView = Ember.View.extend({
   }
 });
 
-App.VideoController = Ember.Object.create({
-  up: function() {
+App.VideoController = Ember.Object.create(DPadHandlers, {
+  upKey: function() {
     App.exitFullScreenVideo();
   },
   
-  down: function() {
+  downKey: function() {
     App.exitFullScreenVideo();
   },
   
@@ -125,7 +130,7 @@ App.VideoController = Ember.Object.create({
     }
   },
   
-  right: function() {
+  rightKey: function() {
     if ($('.boxee-player-osd').css('visibility') == 'hidden') {
       $('.boxee-player-osd').css('visibility', 'visible');
       return;
@@ -134,7 +139,7 @@ App.VideoController = Ember.Object.create({
     FullScreenPlayer.seekForward();
   },
   
-  left: function() {
+  leftKey: function() {
     if ($('.boxee-player-osd').css('visibility') == 'hidden') {
       $('.boxee-player-osd').css('visibility', 'visible');
       return;
@@ -144,7 +149,7 @@ App.VideoController = Ember.Object.create({
   }
 });
 
-App.FeedView = Ember.View.extend({
+App.FeedView = Ember.View.extend(DPadHandlers, {
   templateName: "feed-template",
   classNameBindings: ['content.active', 'content.selected', 'content.history'],
   init: function() {
@@ -166,11 +171,11 @@ App.FeedView = Ember.View.extend({
     scrollToShow(this.$().closest('ul'), this.$());
   },  
   
-  up: function() {
+  upKey: function() {
     App.feedsController.navUpFrom(this.content);
   },
   
-  down: function() {
+  downKey: function() {
     App.feedsController.navDownFrom(this.content);
   },
   
@@ -178,14 +183,14 @@ App.FeedView = Ember.View.extend({
     this.right();
   },
   
-  right: function() {
+  rightKey: function() {
     if (this.content.navInto()) {
       this.content.set('selected', false);
       this.content.set('history', true);      
     }
   },
   
-  left: function() {
+  leftKey: function() {
     if (FullScreenPlayer.video.src) {
       App.fullScreenVideo();
     }
