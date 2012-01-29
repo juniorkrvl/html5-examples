@@ -15,7 +15,12 @@ var App = Ember.Application.create({
   keyDown: function(e) {
     if (App.selectedView && App.selectedView.keyDown) {
       return App.selectedView.keyDown(e);
-    } 
+    }
+    
+    // In case an error of some kind leaves us with no cursor position.
+    if (!App.selectedView) {
+      App.feedCollectionView.select();
+    }
   },
   
   ready: function() {
