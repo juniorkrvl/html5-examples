@@ -113,12 +113,11 @@ body.full-screen-video .boxee-player-osd {
   color: #efefef;
 }
 
-#video-feeds {
+#video-lists {
   height: 1080px;
 }
 
 .video-feed {
-  display: none;
   overflow: hidden;
   height: 100%;
 }

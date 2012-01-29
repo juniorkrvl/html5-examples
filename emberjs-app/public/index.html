@@ -22,11 +22,11 @@
   
   <script type="text/x-handlebars" data-template-name='feed-template'>
     <div>
-      {{#if content.thumbnail}}
-        <img {{bindAttr src="content.thumbnail"}}/>
+      {{#if feed.thumbnail}}
+        <img {{bindAttr src="feed.thumbnail"}}/>
       {{/if}}
     </div>
-    {{content.title}}
+    {{feed.title}}
   </script>
   
   <script type="text/x-handlebars" data-template-name='video-item-template'>
@@ -39,10 +39,6 @@
       {{content.title}}
     </div>
   </script>
-
-  <script type="text/x-handlebars" data-template-name='video-feed-template-dead'>
-    {{collection contentBinding="content.videoItems" class="video-feed" tagName="ul" classBindings="content.isActive" itemViewClass="App.VideoItemView"}}
-  </script>
 </head>
 <body>
   <script type="text/x-handlebars">
@@ -51,16 +47,16 @@
         <div id='left-menu-title' class='top-container location-text'>
           {{App.title}}
         </div>
-        {{collection contentBinding="App.feedsController" tagName="ul" id="feeds" itemViewClass="App.FeedView"}}
+        {{collection App.FeedCollectionView tagName="ul" id="feeds"}}
       </div>
       <div id='sub-menu'>
-        {{collection contentBinding="App.feedsController" tagName="div" id="video-feeds" itemViewClass="App.VideoFeedView"}}
+        {{collection App.VideoListCollectionView tagName="div" id="video-lists"}}
       </div>
     </div>
     
-    <div id='video-container' class='nav-area' data-spot-selector='video'>
+    {{#view App.FullScreenPlayerView id="video-container" class="nav-area"}}
       <video id='player'></video>
-    </div>
+    {{/view}}
   </script>
 
   <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'></script>
@@ -71,5 +67,24 @@
   <script type='text/javascript' src='/javascripts/fullscreen-player.js'></script>
   
   <script type='text/javascript' src="/javascripts/main.js"></script>
+  
+ 	<script type='text/javascript' src="/javascripts/mixins/d_pad_handlers_mixin.js"></script>
+ 	
+ 	<script type='text/javascript' src="/javascripts/lists/feed_list.js"></script>
+ 	
+ 	<script type='text/javascript' src="/javascripts/models/feed.js"></script>
+ 	<script type='text/javascript' src="/javascripts/models/video_item.js"></script>
+ 	
+ 	
+ 	<script type='text/javascript' src="/javascripts/views/feed_view.js"></script>
+ 	<script type='text/javascript' src="/javascripts/views/feed_collection_view.js"></script>
+ 	
+ 	<script type='text/javascript' src="/javascripts/views/full_screen_player_view.js"></script>
+ 	
+ 	<script type='text/javascript' src="/javascripts/views/video_list_view.js"></script>
+ 	<script type='text/javascript' src="/javascripts/views/video_list_collection_view.js"></script>
+ 	<script type='text/javascript' src="/javascripts/views/video_item_view.js"></script>
+ 	
+
 </body>
 </html>
