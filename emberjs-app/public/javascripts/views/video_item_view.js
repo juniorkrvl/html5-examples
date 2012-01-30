@@ -19,7 +19,12 @@ App.VideoItemView = Ember.View.extend(App.DPadHandlers, {
     
     this.set('selected', true);
     App.setSelected(this);
-    this.scrollIntoView();    
+    this.scrollIntoView();
+    
+    // Make sure the FeedView that would be picked if we click left from this 
+    // item is visible.
+    var feedView = App.get('feedCollectionView').lastSelectedView();
+    feedView.scrollIntoView();
   },
   
   deselect: function() {
